@@ -1,0 +1,10 @@
+#navbar {
+  user-select: none;
+}
+#header {
+  user-select: none;
+}
+#navbar-icon {
+  width: 100px !important;
+  height: 100px !important;
+}
