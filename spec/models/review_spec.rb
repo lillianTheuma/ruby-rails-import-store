@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Review do
 
   it { should belong_to(:product) }
-  it { should validate_presence_of :name }
+  it { should validate_presence_of :author }
   it { should validate_presence_of :content_body }
   it { should validate_presence_of :rating }
 
@@ -12,6 +12,6 @@ describe Review do
 
   it("titleizes the name of an author") do
     review = Review.create({author: "test"})
-    expect(review.author.to(eq("Test")))
+    expect(review.author).to(eq("Test"))
   end
 end
