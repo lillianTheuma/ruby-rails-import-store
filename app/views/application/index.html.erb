@@ -15,14 +15,15 @@
         Our most reviewed product
       </div> <!-- class = card-header -->
       <div class="card-body">
-        <!--  < % if @products.any? %> -->
+        <% if @products.any? %>
         <img class="package-icon" src="/media/package.png" alt="Image of a package">
+        <% binding.pry %>
         <% @products.most_reviews.each do |product| %>
         <p class="card-text"
         <% end %>
-        <!-- < % else %> -->
+        <% else %>
         <p> there are no products </p>
-        <!-- < % end %> -->
+        <% end %>
       </div><!-- class = card-body -->
     </div><!-- class = card -->
   </div>
