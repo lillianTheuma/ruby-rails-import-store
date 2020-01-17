@@ -9,6 +9,7 @@ class Review < ApplicationRecord
   validates :rating, :inclusion=> { :in => [1,2,3,4,5] }
 
   before_save(:titleize_author)
+
   private
     def titleize_author
       self.author = self.author.titleize
