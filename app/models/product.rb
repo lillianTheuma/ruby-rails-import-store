@@ -8,10 +8,10 @@ class Product < ApplicationRecord
   scope :american, -> { where(country_of_origin: "United States")}
   scope :three_most_recent, -> { order(created_at: :desc).limit(3)}
   scope :most_reviews, -> {(
-    select("product.id, product.name, product.cost, product.country_of_origin, count(reviews.id) as reviews_count")
+    select("products.id, products.name, products.cost, products.country_of_origin, count(reviews.id) as reviews_count")
     .joins(:reviews)
     .group("products.id")
-    .order("tasks_count DESC")
+    .order("reviews_count DESC")
     .limit(1)
   )}
 

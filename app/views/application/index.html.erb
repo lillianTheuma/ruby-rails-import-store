@@ -2,10 +2,12 @@
   <div class="col-8">
     <div class="card">
       <div class="card-header">
-
+        <h4> Excellence in Service </h4>
       </div> <!-- class = card-header -->
       <div class="card-body">
-
+        <p> Our founder once said "We understand so much, but the sky behind the lights, mostly void, partially stars-- that sky reminds us we don't understand even more". And that perspective informs our practices every day. So our expert curators scour the Earth for the best products from all over, so you can know you will find quality products from exotic and far off places.</p>
+        <h4>Wartime service</h4>
+        <p class="text-justify">Our company made its start in 1942, selling imported products from Germany and the Soviet Union. Trade was extremely difficult, and we lost many items, and some lives, to convoy raids. But we kept on working. We did not crumble. We did not back down. We stood eye to eye with violence, and it blinked first. Only time could tell what happened, and in the end, the great powers that opposed our goals, the german Reich and the Soviet Union, were bankrupted before we were. We carry on with that dedication to this day, and will let no obstacle stop us in our pursuit.</p>
       </div><!-- class = card-body -->
     </div><!-- class = card -->
   </div>
@@ -16,10 +18,32 @@
       </div> <!-- class = card-header -->
       <div class="card-body">
         <% if @products.any? %>
-        <img class="package-icon" src="/media/package.png" alt="Image of a package">
-        <% binding.pry %>
+        <img class="package-icon card-img-top" src="/media/package.png" alt="Image of a package">
         <% @products.most_reviews.each do |product| %>
-        <p class="card-text"
+        <a href="/products/<%=product.id%>">
+        <h3 class="align-middle card-text"> <%= product.name %> </h3>
+        <p class="card-text"> $<%= product.cost %> </p>
+        <p class="card-text"> This is a <%= product.country_of_origin %> import! </p>
+        </a>
+        <% end %>
+        <% else %>
+        <p> there are no products </p>
+        <% end %>
+      </div><!-- class = card-body -->
+    </div><!-- class = card -->
+    <div class="card id="newest-products"">
+      <div class="card-header">
+        Our three newest products
+      </div> <!-- class = card-header -->
+      <div class="card-body">
+        <% if @products.any? %>
+        <img class="package-icon card-img-top" src="/media/package.png" alt="Image of a package">
+        <% @products.three_most_recent.each do |product| %>
+        <a href="/products/<%=product.id%>">
+        <h3 class="align-middle card-text"> <%= product.name %> </h3>
+        <p class="card-text"> $<%= product.cost %> </p>
+        <p class="card-text"> This is a <%= product.country_of_origin %> import! </p>
+        </a>
         <% end %>
         <% else %>
         <p> there are no products </p>
