@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header">
+
+      </div> <!-- class = card-header -->
+      <div class="card-body">
+
+      </div><!-- class = card-body -->
+    </div><!-- class = card -->
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">
+        Our most reviewed product
+      </div> <!-- class = card-header -->
+      <div class="card-body">
+        <% if @products.any? %>
+        <img class="package-icon" src="/media/package.png" alt="Image of a package">
+        <% @products.most_reviews.each do |product| %>
+          <p class="card-text"
+      </div><!-- class = card-body -->
+    </div><!-- class = card -->
+  </div>
+</div><!-- class = row -->
