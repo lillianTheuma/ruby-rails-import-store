@@ -18,10 +18,16 @@
           <br>
           <br>
           <br>
-          <a href="/products/<%=@product.id%>/reviews/new">Write a review!</a>
-        </div><!-- class = card-body -->
-      </div><!-- class = card -->
-    </div><!-- class = card-group -->
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <a href="/products/<%=@product.id%>/reviews/new">Write a review!</a>
+            </li>
+            <li class="list-group-item">
+              <a href="/products/<%=@product.id%>/edit">Edit this Product</a>
+            </li>
+          </div><!-- class = card-body -->
+        </div><!-- class = card -->
+      </div><!-- class = card-group -->
     </div><!-- class = col-8 -->
     <div class="col-4">
       <div class="card">
@@ -52,9 +58,10 @@
         </div> <!-- class = card-header -->
         <div class="card-body">
           <p><%= review.content_body %></p>
-        </div><!-- class = card-body -->
-      </div><!-- class = card -->
-      <% end %>
-      <% end %>
-    </div><!-- class = col-4 -->
-  </div><!-- class = row -->
+          <a href="/products/<%=@product.id %>/reviews/<%=review.id%>/edit"> edit <a>
+          </div><!-- class = card-body -->
+        </div><!-- class = card -->
+        <% end %>
+        <% end %>
+      </div><!-- class = col-4 -->
+    </div><!-- class = row -->
