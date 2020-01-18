@@ -1,0 +1,11 @@
+<%= form_for [@product, @review] do |f| %>
+  <%= f.label :Name %>
+  <%= f.text_field :author %>
+  <%= f.label :"Your Rating" %>
+  <%= f.number_field :rating %>
+  <br>
+  <%= f.text_area :content_body, cols: 80, rows: 10 %>
+  <br>
+  <%= f.hidden_field :product_id, :value => @product.id %>
+  <p><%= f.submit %></p>
+<% end %>
