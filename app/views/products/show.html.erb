@@ -1,8 +1,64 @@
 <div class="row">
   <div class="col-8">
+    <div class="card-group">
+      <div class="card">
 
+        <div class="card-body">
+          <img class="package-icon card-img-top" src="/media/package.png" alt="Image of a package">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h3 class="align-middle"><%= @product.name %></h3></li>
+            <li class="list-group-item">$<%= @product.cost %></li>
+          </ul>
+        </div><!-- class = card-body -->
+      </div><!-- class = card -->
+      <div class="card">
+        <div class="card-body">
+          <p> This product is one of our hand picked goods! </p>
+          <p> It originates from a <%= @product.country_of_origin %> market. </p>
+        </div><!-- class = card-body -->
+      </div><!-- class = card -->
+    </div><!-- class = card-group -->
+    <div class="card">
+      <div class="card-header">
+        <h4> Write a review! </h4
+      </div><!-- class = card-header -->
+      <div class="card-body">
+
+      </div><!-- class = card-body -->
+    </div><!-- class = card -->
   </div><!-- class = col-8 -->
   <div class="col-4">
-
+    <div class="card">
+      <div class="card-header">
+        Reviews
+      </div> <!-- class = card-header -->
+    </div><!-- class = card -->
+    <% if @product.reviews.any? %>
+    <% @product.reviews.each do |review| %>
+    <div class="card">
+      <div class="card-header">
+        <%= review.author %>
+        <div class="row">
+          <% i = 0 %>
+          <% while i < review.rating %>
+          <div class="col-2">
+            <img class=" rating-icon card-img-top" src="/media/closed.png">
+          </div>
+          <% i += 1 %>
+          <% end %>
+          <% while i < 5 %>
+          <div class="col-2">
+            <img class="rating-icon card-img-top" src="/media/open.png">
+          </div>
+          <% i += 1 %>
+          <% end %>
+        </div><!-- class = row -->
+      </div> <!-- class = card-header -->
+      <div class="card-body">
+        <p><%= review.content_body %></p>
+      </div><!-- class = card-body -->
+    </div><!-- class = card -->
+    <% end %>
+    <% end %>
   </div><!-- class = col-4 -->
 </div><!-- class = row -->
