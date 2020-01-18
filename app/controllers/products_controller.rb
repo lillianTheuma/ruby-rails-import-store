@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to products_path
+      redirect_to product_path(@product)
     else
       render :new
     end
@@ -47,6 +47,6 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:name)
+      params.require(:product).permit(:name, :country_of_origin, :cost)
     end
 end
