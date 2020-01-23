@@ -25,13 +25,29 @@
         </li>
         <li>
           <a class="nav-link" href="/products/new">Add a Product!</a>
-          </li>
-          <li>
+        </li>
+        <li>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Find a Product</button>
           </form>
         </li>
+
+        <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to('Edit registration', edit_user_registration_path) %>
+        </li>
+        <li class="nav-link">
+          <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+        </li>
+        <% else %>
+        <li class="nav-link">
+          <%= link_to('Login', new_user_session_path) %>
+        </li>
+        <li class="nav-item">
+          <%= link_to('Register', new_user_registration_path) %>
+        </li>
+        <% end %>
       </ul> <!-- class = navbar-nav -->
     </nav> <!-- id = navbar, class = navbar navbar-expand-lg navbar-light bg-light -->
     <div id="header" class="jumbotron">
@@ -39,6 +55,8 @@
       <h4>"High quality goods from distant places"</h4>
     </div> <!-- id = header - class = jumbotron -->
     <div id="body">
+      <%= flash[:alert] %>
+      <%= flash[:notice] %>
       <%= yield %>
     </div> <!-- id = body -->
     <nav id="navbar" class="navbar fixed-bottom navbar-expand-lg navbar-light bg-light">
