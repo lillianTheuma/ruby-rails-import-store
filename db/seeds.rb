@@ -28,10 +28,10 @@ role_list.each do |name, description|
 end
 
 user_list = [
-  ["admin@store.net", "admin"],
-  ["vendor@store.net","vendor"],
-  ["moderator@store.net","moderator"],
-  ["curator@store.net","curator"]
+  ["admin@store.net", "123456"],
+  ["vendor@store.net","123456"],
+  ["moderator@store.net","123456"],
+  ["curator@store.net","123456"]
 ]
 user_list.each do |email, password|
   User.create(email: email, password: password)
