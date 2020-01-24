@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header">
+      </div> <!-- class = card-header -->
+      <div class="card-body">
+      </div><!-- class = card-body -->
+    </div><!-- class = card -->
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">
+        <h4> How our roles work </h4>
+      </div> <!-- class = card-header -->
+      <div class="card-body">
+        <p> This site operates through a system of Roles. A users posesses a combination of roles. These roles grant various accesses.</p>
+      </div><!-- class = card-body -->
+    </div><!-- class = card -->
+    <ul class="list-group list-group-flush">
+      <% if @roles.any? %>
+      <% @roles.each do |role| %>
+      <div class="card">
+        <div class="card-header">
+          <%= role.name %> - ID :<%=role.id%>
+        </div> <!-- class = card-header -->
+        <div class="card-body">
+          <p class="card-text"><%= role.description %></p>
+          <% if role.users.count == 0 %>
+          <p class="card-text"> This role has no members. </p>
+          <% elsif role.users.count == 1 %>
+          <p class="card-text"> This role has one member. </p>
+          <% else %>
+          <p class="card-text"> This role has <%= role.users.count %> members. </p>
+          <% end %>
+        </div><!-- class = card-body -->
+      </div><!-- class = card -->
+      <% end %>
+      <% else %>
+      <li class="list-group-item"> there are no roles </li>
+      <% end %>
+    </ul>
+  </div>
+</div><!-- class = row -->

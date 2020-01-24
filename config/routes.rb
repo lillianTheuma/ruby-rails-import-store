@@ -8,5 +8,7 @@ Rails.application.routes.draw do
     resources :reviews
   end
 
-  resources :vendors 
+  resources :vendors
+  resources :users
+  resources :roles
 end
