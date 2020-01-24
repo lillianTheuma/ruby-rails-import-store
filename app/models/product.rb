@@ -18,9 +18,4 @@ class Product < ApplicationRecord
   scope :get_by_name, -> (name_parameter) { where(name: name_parameter)}
   scope :search, -> (name_parameter) { where("name like ?", "%#{name_parameter}%")}
 
-  before_save(:titleize_product)
-  private
-    def titleize_product
-      self.name = self.name.titleize
-    end
 end
