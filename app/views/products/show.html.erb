@@ -8,6 +8,9 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><h3 class="align-middle"><%= @product.name %></h3></li>
             <li class="list-group-item">$<%= @product.cost %></li>
+            <% if @product.vendor %>
+            <li class="list-group-item">Sold by <a href="/vendors/<%=@product.vendor.id%>"><%= @product.vendor.name %></a></li>
+            <% end %>
           </ul>
         </div><!-- class = card-body -->
       </div><!-- class = card -->

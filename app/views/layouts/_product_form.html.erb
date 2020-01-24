@@ -1,17 +1,38 @@
+<% if user_signed_in? %>
+<% @roles = [] %>
+<% current_user.roles.each do |role| %>
+<% @roles.push role.name %>
+<% end %>
+<% @required_roles = ["Admin","Vendor"] & @roles %>
+<% if @required_roles.empty?  %>
+<p> You are not authorized to create a product. If you believe this is a mistake, please contact an administrator. </p>
+<% else %>
 <%= form_for [@product] do |f| %>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">
+<ul class="list-group list-group-flush">
+  <% if @required_roles.exclude?"Vendor"%>
+  <li class="list-group-item">
+  <%= f.label :"Vendor ID" %>
+  <%= f.number_field :vendor_id %>
+  </li>
+  <% else %>
+  <%= f.hidden_field :vendor_id, value: current_user.vendor_id %>
+  <% end %>
+  <li class="list-group-item">
     <%= f.label :"Product Name" %>
     <%= f.text_field :name %>
-    </li>
-    <li class="list-group-item">
+  </li>
+  <li class="list-group-item">
     <%= f.label :"Product Price" %>
     <%= f.number_field :cost %>
-    </li>
-    <li class="list-group-item">
+  </li>
+  <li class="list-group-item">
     <%= f.label :"Nationality" %>
     <%= f.text_field :country_of_origin %>
-    </li>
-    <li class="list-group-item"><%= f.submit %></li>
-  </ul>
+  </li>
+  <li class="list-group-item"><%= f.submit %></li>
+</ul>
+<% end %>
+<% end %>
+<% else %>
+<p> You are not authorized to create a product! Please log in! </p>
 <% end %>

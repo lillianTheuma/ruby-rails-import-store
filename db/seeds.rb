@@ -27,14 +27,23 @@ role_list.each do |name, description|
   Role.create(name: name, description: description)
 end
 
+vendor_list = [
+  ["Boxes Limited", "We sell a limited number of boxes!"],
+  ["Test Company Please Ignore","Write your corporation description here."]
+  ]
+
+vendor_list.each do |name, description|
+  Vendor.create(name: name, description: description)
+end
+
 user_list = [
   ["admin@store.net", "123456"],
-  ["vendor@store.net","123456"],
+  ["vendor@store.net","123456", 1],
   ["moderator@store.net","123456"],
   ["curator@store.net","123456"]
 ]
-user_list.each do |email, password|
-  User.create(email: email, password: password)
+user_list.each do |email, password, vendor_id|
+  User.create(email: email, password: password, vendor_id: vendor_id)
 end
 
 User.all.each do |user|

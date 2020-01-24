@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-text"><%= @vendor.name %></h3>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><%= @vendor.description %></p>
+      </div><!-- class = card-body -->
+    </div><!-- class = card -->
+  </div><!-- class = col-8 -->
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">
+        Their 3 Newest Products
+      </div> <!-- class = card-header -->
+    </div><!-- class = card -->
+    <% Product.get_by_vendor(@vendor.id).three_most_recent.each do |product| %>
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-text"><%= product.name %></h4>
+      </div> <!-- class = card-header -->
+      <div class="card-body">
+        <p class="card-text">$<%= product.cost %></p>
+      </div><!-- class = card-body -->
+    </div><!-- class = card -->
+    <% end %>
+  </div><!-- class = col-4 -->
+</div><!-- class = row -->
