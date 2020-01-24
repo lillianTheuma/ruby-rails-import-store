@@ -17,5 +17,27 @@ Product.destroy_all
   end
 end
 
+role_list = [
+  ["Admin","Has access to all functions on the site"],
+  ["Vendor","Has access to add, modify, and delete product records pertaining to their vendor"],
+  ["Moderator","Has access to modify and delete comments to moderate their contents outside of our guidelines"],
+  ["Curator","Has access to add, modify, and delete any product records"]
+]
+role_list.each do |name, description|
+  Role.create(name: name, description: description)
+end
+
+user_list = [
+  ["admin@store.net", "admin"],
+  ["vendor@store.net","vendor"],
+  ["moderator@store.net","moderator"],
+  ["curator@store.net","curator"]
+]
+user_list.each do |email, password|
+  User.create(email: email, password: password)
+end
+
 p "Created #{Product.count} products"
 p "Created #{Review.count} reviews"
+p "Created #{Role.count} roles"
+p "Created #{User.count} users"
