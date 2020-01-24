@@ -37,6 +37,10 @@ user_list.each do |email, password|
   User.create(email: email, password: password)
 end
 
+User.all.each do |user|
+  role = Role.find(user.id)
+  user.roles << role
+end
 p "Created #{Product.count} products"
 p "Created #{Review.count} reviews"
 p "Created #{Role.count} roles"
