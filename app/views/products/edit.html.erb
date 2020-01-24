@@ -4,7 +4,11 @@
       <div class="card-header">
       </div> <!-- class = card-header -->
       <div class="card-body">
+        <% if user_signed_in? %>
         <%= render "layouts/product_form" %>
+        <% else %>
+        <p> You are not authorized to edit a product! Please sign in! </p>
+        <% end %>
       </div><!-- class = card-body -->
     </div><!-- class = card -->
   </div>

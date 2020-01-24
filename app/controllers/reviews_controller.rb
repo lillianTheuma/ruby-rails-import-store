@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   def new
+    @user = User.find(current_user.id)
     @product = Product.find(params[:product_id])
     @review = Review.new
     render :new
@@ -41,6 +42,6 @@ class ReviewsController < ApplicationController
 
   private
     def review_params
-      params.require(:review).permit(:author, :rating, :content_body, :product_id)
+      params.require(:review).permit(:author, :rating, :content_body, :product_id, :user_id)
     end
 end

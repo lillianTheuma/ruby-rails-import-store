@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2020_01_24_201657) do
 
   create_table "reviews", force: :cascade do |t|
     t.string "author"
+    t.integer "user_id"
     t.string "content_body"
     t.integer "rating"
     t.integer "product_id"
@@ -64,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_01_24_201657) do
   end
 
   add_foreign_key "products", "vendors"
+  add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "products"
   add_foreign_key "users", "vendors"
 end

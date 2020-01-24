@@ -1,3 +1,9 @@
+<% if user_signed_in? %>
+<% @roles = [] %>
+<% current_user.roles.each do |role| %>
+<% @roles.push role.name %>
+<% end %>
+<% end %>
 <div class="row">
   <div class="col-8">
     <div class="card-group">
@@ -21,6 +27,7 @@
           <br>
           <br>
           <br>
+          <% if user_signed_in? %>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <a href="/products/<%=@product.id%>/reviews/new">Write a review!</a>
@@ -28,43 +35,50 @@
             <li class="list-group-item">
               <a href="/products/<%=@product.id%>/edit">Edit this Product</a>
             </li>
-          </div><!-- class = card-body -->
-        </div><!-- class = card -->
-      </div><!-- class = card-group -->
-    </div><!-- class = col-8 -->
-    <div class="col-4">
-      <div class="card">
-        <div class="card-header">
-          Reviews
-        </div> <!-- class = card-header -->
+          </ul>
+          <% end %>
+        </div><!-- class = card-body -->
       </div><!-- class = card -->
-      <% if @product.reviews.any? %>
-      <% @product.reviews.each do |review| %>
-      <div class="card">
-        <div class="card-header">
-          <%= review.author %>
-          <div class="row">
-            <% i = 0 %>
-            <% while i < review.rating %>
-            <div class="col-2">
-              <img class=" rating-icon card-img-top" src="/media/closed.png">
-            </div>
-            <% i += 1 %>
-            <% end %>
-            <% while i < 5 %>
-            <div class="col-2">
-              <img class="rating-icon card-img-top" src="/media/open.png">
-            </div>
-            <% i += 1 %>
-            <% end %>
-          </div><!-- class = row -->
-        </div> <!-- class = card-header -->
-        <div class="card-body">
-          <p><%= review.content_body %></p>
-          <a href="/products/<%=@product.id %>/reviews/<%=review.id%>/edit"> edit <a>
-          </div><!-- class = card-body -->
-        </div><!-- class = card -->
+    </div><!-- class = card-group -->
+  </div><!-- class = col-8 -->
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">
+        Reviews
+      </div> <!-- class = card-header -->
+    </div><!-- class = card -->
+    <% if @product.reviews.any? %>
+    <% @product.reviews.each do |review| %>
+    <div class="card">
+      <div class="card-header">
+        <%= review.author %>
+        <div class="row">
+          <% i = 0 %>
+          <% while i < review.rating %>
+          <div class="col-2">
+            <img class=" rating-icon card-img-top" src="/media/closed.png">
+          </div>
+          <% i += 1 %>
+          <% end %>
+          <% while i < 5 %>
+          <div class="col-2">
+            <img class="rating-icon card-img-top" src="/media/open.png">
+          </div>
+          <% i += 1 %>
+          <% end %>
+        </div><!-- class = row -->
+      </div> <!-- class = card-header -->
+      <div class="card-body">
+        <p><%= review.content_body %></p>
+        <% if user_signed_in? %>
+          <% @required_roles = ["Admin", "Moderator"] & @roles %>
+          <% if @required_roles.any? || review.user_id == current_user.id %>
+            <a href="/products/<%=@product.id %>/reviews/<%=review.id%>/edit"> edit <a>
+          <% end %>
         <% end %>
-        <% end %>
-      </div><!-- class = col-4 -->
-    </div><!-- class = row -->
+        </div><!-- class = card-body -->
+      </div><!-- class = card -->
+      <% end %>
+      <% end %>
+    </div><!-- class = col-4 -->
+  </div><!-- class = row -->

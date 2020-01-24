@@ -1,0 +1,27 @@
+
+<% if user_signed_in? %>
+<% @roles = [] %>
+<% current_user.roles.each do |role| %>
+<% @roles.push role.name %>
+<% end %>
+<% @required_roles = ["Admin"] & @roles %>
+<% if @required_roles.any? || (current_user.vendor_id == @vendor.id) %>
+<%= form_for [@vendor] do |f| %>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    <%= f.label :"Vendor Name" %>
+    <%= f.text_field :name %>
+  </li>
+  <li class="list-group-item">
+    <%= f.label :"Vendor Description" %>
+    <%= f.text_field :description %>
+  </li>
+  <li class="list-group-item"><%= f.submit %></li>
+</ul>
+<% end %>
+<% else %>
+<p> You are not authorized to modify this vendor. If you believe this is a mistake, please contact an administrator. </p>
+<% end %>
+<% else %>
+<p> You are not authorized to modify a vendor! Please log in! </p>
+<% end %>

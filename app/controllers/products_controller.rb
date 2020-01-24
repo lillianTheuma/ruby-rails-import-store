@@ -21,16 +21,17 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit
-    @product = Product.find(params[:id])
-    render :edit
-  end
-
   def show
     @product = Product.find(params[:id])
     @reviews = @product.reviews
     render :show
   end
+
+  def edit
+    @product = Product.find(params[:id])
+    render :edit
+  end
+
 
   def update
     @product = Product.find(params[:id])

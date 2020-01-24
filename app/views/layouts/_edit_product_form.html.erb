@@ -9,14 +9,6 @@
 <% else %>
 <%= form_for [@product] do |f| %>
 <ul class="list-group list-group-flush">
-  <% if @required_roles.exclude?"Vendor"%>
-  <li class="list-group-item">
-  <%= f.label :"Vendor ID" %>
-  <%= f.number_field :vendor_id %>
-  </li>
-  <% else %>
-  <%= f.hidden_field :vendor_id, value: current_user.vendor_id %>
-  <% end %>
   <li class="list-group-item">
     <%= f.label :"Product Name" %>
     <%= f.text_field :name %>
