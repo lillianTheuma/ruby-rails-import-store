@@ -10,11 +10,11 @@
             Email: <%= @user.email %>
           </li>
           <li class="list-group-item">
-          <% if @user.last_sign_in_at %>
+            <% if @user.last_sign_in_at %>
             Last Sign in at <%= @user.last_sign_in_at %>
-          <% else %>
+            <% else %>
             This user has never signed in.
-          <% end %>
+            <% end %>
           </li>
           <li class="list-group-item">
             Created at <%= @user.created_at %>
@@ -36,18 +36,36 @@
       <div class="card-body">
         <ul class="list-group list-group-flush">
           <% if @user.roles.any? %>
-            <% @user.roles.each do |role| %>
-              <li class="list-group-item">
-                <h5><%=role.name%></h5>
-                <br>
-                <p><%=role.description%></p>
-              </li>
-            <% end %>
+          <% @user.roles.each do |role| %>
+          <li class="list-group-item">
+            <h5><%=role.name%></h5>
+            <br>
+            <p><%=role.description%></p>
+            <a class="list-group-item list-group-item-action" href="/users/<%= @user.id %>/remove_role/<%= role.id %>">Remove this role</a>
+          </li>
+          <% end %>
           <% else %>
-            <li class="list-group-item"> This user has no active roles </li>
+          <li class="list-group-item"> This user has no active roles </li>
           <% end %>
         </ul>
       </div><!-- class = card-body -->
     </div><!-- class = card -->
-  </div>
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-text">ADD ROLES </h4>
+      </div><!-- class = card-header -->
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <% roles = Role.all %>
+          <% roles.each do |role| %>
+          <% if @user.roles.exclude?(role) %>
+            <li class="list-group-item list-group-item-action">
+              <a href="/users/<%= @user.id %>/add_role/<%= role.id %>">Add Role: <%=role.name%></a>
+            </li>
+          <% end %>
+          <% end %>
+        </ul>
+      </div><!-- class = card-body -->
+    </div><!-- class = card -->
+  </div><!-- class = col-4 -->
 </div><!-- class = row -->
