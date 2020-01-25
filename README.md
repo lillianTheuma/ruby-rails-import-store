@@ -1,7 +1,10 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is an imported goods store. It is made for a fictional company that deals in imported goods. Users may post goods as vendors. Or post reviews. It features a role-based authentication system.
+View the project live at
+```
+https://alexisimportedgoods.herokuapp.com/
+```
 
 Things you may want to cover:
 
