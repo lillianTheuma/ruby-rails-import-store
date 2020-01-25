@@ -17,7 +17,14 @@
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
       <a href="/"><img id="navbar-icon" src="/media/globe.png" alt="Image of the Earth"></a>
       <ul class="navbar-nav">
-        <li class="nav-item dropdown">
+          <% if user_signed_in? %>
+            <% @roles = [] %>
+            <% current_user.roles.each do |role| %>
+              <% @roles.push role.name %>
+            <% end %>
+            <% @required_roles = ["Admin"] & @roles %>
+            <% if @required_roles.any?  %>
+            <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Admin Actions
           </a>
@@ -27,6 +34,8 @@
             <div class="dropdown-divider"></div>
           </div>
         </li>
+        <% end %>
+        <% end %>
         <li class="nav-item">
           <a class="nav-link" id="dark" onClick="dark()">Toggle Dark Mode</a>
         </li>

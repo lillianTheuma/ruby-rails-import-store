@@ -8,16 +8,17 @@ class RolesController < ApplicationController
       end
       @required_roles = ["Admin"] & @roles
     end
-    if @required_roles = nil
-      @required_roles = []
-    end
-    binding.pry
-    if @required_roles.any?
-      @roles = Role.all
-      render :index
-    else
+    if @required_roles == nil
       flash[:alert] = "Insufficient Priveleges."
       redirect_to '/'
+    else
+      if @required_roles.any?
+      @roles = Role.all
+      render :index
+      else
+      flash[:alert] = "Insufficient Priveleges."
+      redirect_to '/'
+      end
     end
   end
 
