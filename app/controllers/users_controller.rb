@@ -1,27 +1,28 @@
 class UsersController < ApplicationController
+  def index
+    if user_signed_in?
+      @roles = []
+      current_user.roles.each do |role|
+        @roles.push role.name
+      end
+    end
+    @required_roles = ["Admin"] & @roles
+    if @required_roles.any?
+      @users = User.all
+      render :index
+    else
+      flash[:alert] = "Insufficient Priveleges."
+      redirect_to application_path
+    end
+  end
+
   def show
     @user = User.find(params[:id])
     render :show
   end
 
-  def edit
-    @user = User.find(params[:id])
-    render :edit
-  end
-
-
-  def update
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:notice] = "User updated."
-      redirect_to user_path(@user)
-    else
-      flash[:alert] = "User update failed."
-      render :edit
-    end
-  end
   private
-    def user_params
-      params.require(:user).permit(:email, :password)
-    end
+  def user_params
+    params.require(:user).permit(:email, :password)
+  end
 end

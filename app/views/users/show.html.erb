@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header">
+        <h5> User Information </h5>
+      </div> <!-- class = card-header -->
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Email: <%= @user.email %>
+          </li>
+          <li class="list-group-item">
+          <% if @user.last_sign_in_at %>
+            Last Sign in at <%= @user.last_sign_in_at %>
+          <% else %>
+            This user has never signed in.
+          <% end %>
+          </li>
+          <li class="list-group-item">
+            Created at <%= @user.created_at %>
+          </li>
+          <% if @user.vendor %>
+          <li class="list-group-item">
+            Vendor: <%=@user.vendor.name%>
+          </li>
+          <% end %>
+        </ul>
+      </div><!-- class = card-body -->
+    </div><!-- class = card -->
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">
+        <h4> List of this users active roles </h4>
+      </div> <!-- class = card-header -->
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <% if @user.roles.any? %>
+            <% @user.roles.each do |role| %>
+              <li class="list-group-item">
+                <h5><%=role.name%></h5>
+                <br>
+                <p><%=role.description%></p>
+              </li>
+            <% end %>
+          <% else %>
+            <li class="list-group-item"> This user has no active roles </li>
+          <% end %>
+        </ul>
+      </div><!-- class = card-body -->
+    </div><!-- class = card -->
+  </div>
+</div><!-- class = row -->
