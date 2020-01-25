@@ -16,6 +16,8 @@ class Product < ApplicationRecord
     .limit(1)
   )}
 
+  scope :random, -> {Product.order('RANDOM').limit(1)}
+
   scope :get_by_vendor, -> (vendor_id) { where(vendor_id: vendor_id)}
   scope :get_by_name, -> (name_parameter) { where(name: name_parameter)}
   scope :search, -> (name_parameter) { where("name like ?", "%#{name_parameter}%")}

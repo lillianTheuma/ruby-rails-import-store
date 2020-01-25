@@ -27,14 +27,14 @@ class UsersController < ApplicationController
       current_user.roles.each do |role|
         @roles.push role.name
       end
-      @required_roles = ["Admin"]
+      @required_roles = ["Admin"] & @roles
     end
+    @user = User.find(params[:user_id])
     if @required_roles == nil
       flash[:alert] = "Insufficient Priveleges."
-      redirect_to '/'
+      redirect_to user_path(@user)
     else
       if @required_roles.any?
-        @user = User.find(params[:user_id])
         @roles = []
         @user.roles.each do |role|
           @roles.push role.name
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
         end
       else
         flash[:alert] = "Insufficient Priveleges."
-        redirect_to '/'
+        redirect_to user_path(@user)
       end
     end
   end
@@ -61,14 +61,14 @@ class UsersController < ApplicationController
       current_user.roles.each do |role|
         @roles.push role.name
       end
-      @required_roles = ["Admin"]
+      @required_roles = ["Admin"] & @roles
     end
+    @user = User.find(params[:user_id])
     if @required_roles == nil
       flash[:alert] = "Insufficient Priveleges."
-      redirect_to '/'
+      redirect_to user_path(@user)
     else
       if @required_roles.any?
-        @user = User.find(params[:user_id])
         @roles = []
         @user.roles.each do |role|
           @roles.push role.name
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
         end
       else
         flash[:alert] = "Insufficient Priveleges."
-        redirect_to '/'
+        redirect_to user_path(@user)
       end
     end
   end

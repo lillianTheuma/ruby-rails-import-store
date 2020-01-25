@@ -59,9 +59,9 @@
           <% roles = Role.all %>
           <% roles.each do |role| %>
           <% if @user.roles.exclude?(role) %>
-            <li class="list-group-item list-group-item-action">
-              <a href="/users/<%= @user.id %>/add_role/<%= role.id %>">Add Role: <%=role.name%></a>
-            </li>
+          <li class="list-group-item list-group-item-action">
+            <a href="/users/<%= @user.id %>/add_role/<%= role.id %>">Add Role: <%=role.name%></a>
+          </li>
           <% end %>
           <% end %>
         </ul>
